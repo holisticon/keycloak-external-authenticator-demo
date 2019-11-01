@@ -1,0 +1,197 @@
+/*! Copyright 2019 */
+/* open-sans-regular - latin */
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.eot");
+  /* IE9 Compat Modes */
+  src: local("Open Sans Regular"), local("OpenSans-Regular"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.eot?#iefix") format("embedded-opentype"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.woff2") format("woff2"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.woff") format("woff"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.ttf") format("truetype"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.svg#OpenSans") format("svg");
+  /* Legacy iOS */ }
+
+/* open-sans-600 - latin */
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.eot");
+  /* IE9 Compat Modes */
+  src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.eot?#iefix") format("embedded-opentype"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.woff2") format("woff2"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.woff") format("woff"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.ttf") format("truetype"), url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.svg#OpenSans") format("svg");
+  /* Legacy iOS */ }
+
+/* roboto-mono-regular - latin */
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.eot");
+  /* IE9 Compat Modes */
+  src: local("Roboto Mono"), local("RobotoMono-Regular"), url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.eot?#iefix") format("embedded-opentype"), url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.woff2") format("woff2"), url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.woff") format("woff"), url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.ttf") format("truetype"), url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.svg#RobotoMono") format("svg");
+  /* Legacy iOS */ }
+
+@font-face {
+  font-family: "arrow-back";
+  src: url("${url.resourcesPath}/fonts/arrow-back.ttf?b7nrmq") format("truetype"), url("${url.resourcesPath}/fonts/arrow-back.woff?b7nrmq") format("woff"), url("${url.resourcesPath}/fonts/arrow-back.svg?b7nrmq#arrow-back") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="holi-icon-"], [class*=" holi-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'arrow-back' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.holi-icon-arrow_back:before {
+  content: "\e900"; }
+
+html,
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans";
+  font-size: 14px; }
+
+body {
+  background: #efeff4;
+  justify-content: center;
+  align-items: center; }
+
+@media screen and (max-width: 414px) {
+  body {
+    background: #fff;
+    align-items: flex-start; }
+  .keycloak-window {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none; } }
+
+body {
+  display: flex; }
+  body.vendetta {
+    background: url("${url.resourcesPath}/images/v.jpg") repeat; }
+
+.keycloak-window {
+  background: #ffffff;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  width: 300px;
+  overflow: hidden; }
+  .keycloak-window .keycloak-header {
+    background: #b0b8b9;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .keycloak-window.error {
+    position: relative;
+    animation: 0.35s ease-out 0s 1 wrong-log; }
+    .keycloak-window.error .keycloak-header {
+      background-color: #ff2d55; }
+
+@keyframes wrong-log {
+  0%,
+  100% {
+    left: 0; }
+  20%,
+  60% {
+    left: 10px; }
+  40%,
+  80% {
+    left: -10px; } }
+  .keycloak-window.error .keycloak-body, .keycloak-window.warning .keycloak-body, .keycloak-window.success .keycloak-body, .keycloak-window.info .keycloak-body {
+    padding-top: 12.5px; }
+  .keycloak-window .keycloak-body {
+    padding: 25px; }
+    .keycloak-window .keycloak-body .messages {
+      text-align: center;
+      margin-bottom: 12.5px; }
+      .keycloak-window .keycloak-body .messages .error {
+        color: #ff2d55; }
+
+.keycloak-back a,
+.keycloak-back a:visited,
+.keycloak-footer a,
+.keycloak-footer a:visited {
+  padding: 6.25px;
+  display: inline-block;
+  color: #b0b8b9;
+  font-size: 12px;
+  transition: color ease-out 0.2s;
+  text-decoration: none; }
+  .keycloak-back a:focus, .keycloak-back a:hover,
+  .keycloak-back a:visited:focus,
+  .keycloak-back a:visited:hover,
+  .keycloak-footer a:focus,
+  .keycloak-footer a:hover,
+  .keycloak-footer a:visited:focus,
+  .keycloak-footer a:visited:hover {
+    color: #95a0a1; }
+
+.keycloak-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; }
+
+.holi-input-field {
+  height: 30px;
+  line-height: 30px;
+  margin-top: 12.5px;
+  margin-bottom: 12.5px;
+  border: none;
+  background: none;
+  border-bottom: 2px solid #dfdfe4;
+  width: 100%;
+  font-family: "Open Sans";
+  font-size: 14px;
+  transition: border-bottom-color ease-out 0.2s;
+  -webkit-appearance: none;
+  border-radius: 0; }
+  .holi-input-field:focus {
+    outline: none;
+    border-bottom: 2px solid #ff2d55; }
+  .holi-input-field:hover:not(:focus) {
+    border-bottom-color: #b0b8b9; }
+    .holi-input-field:hover:not(:focus)::placeholder {
+      color: #b0b8b9; }
+  .holi-input-field::placeholder {
+    color: #dfdfe4;
+    transition: color ease-out 0.2s; }
+
+.holi-primary-btn {
+  background: #4eb4f9;
+  max-width: 250px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  line-height: 50px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 14px;
+  margin-top: 40px;
+  cursor: pointer;
+  transition: background-color ease-out 0.2s;
+  -webkit-appearance: none; }
+  .holi-primary-btn:focus, .holi-primary-btn:hover {
+    outline: none;
+    background: #1d9ff7; }
+
+.forgot-password-link {
+  font-weight: 600; }
+
+ol.login-config-totp {
+  padding-inline-start: 17px; }
+  ol.login-config-totp #kc-totp-secret-qr-code {
+    position: relative;
+    left: -20px; }
+  ol.login-config-totp .code {
+    font-family: "Roboto Mono"; }
+
