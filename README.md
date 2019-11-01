@@ -4,6 +4,8 @@ Show sample implementation for using external auth provider in keycloak
 - [Keycloak external Authenticator Demo](#keycloak-external-authenticator-demo)
   - [Using](#using)
     - [Users](#users)
+    - [Federation Szenarios:](#federation-szenarios)
+      - [Use Legacy System aus Authentication Provider](#use-legacy-system-aus-authentication-provider)
     - [Testing Keycloak e-mails](#testing-keycloak-e-mails)
 
 ## Using
@@ -13,7 +15,9 @@ Keycloak is available at [localhost:8080](http://localhost:8080/). Another Keycl
 To create new setup sql dump:
 ```
 ./bin/dev-dump-sql-docker.sh 
+
 ```
+
 ### Users
 
 * master Realm:
@@ -22,6 +26,27 @@ To create new setup sql dump:
   * user / user
 * Legacy Realm (3rd Party Keycloak)
   * legacy / legacy
+
+### Federation Szenarios:
+
+#### Use Legacy System aus Authentication Provider
+
+To get the redirect working add a DNS alias, e.g. `/etc/hosts`:
+
+```
+# fake localhost with custom domain
+127.0.0.1 3rdparty
+```
+
+Now the [login](http://localhost:8080/auth/realms/apps/account) is possible directly with one of the app user or by using one of the legacy user:
+
+![](docs/images/scenario1_legacy_as_oauth_provider.png)
+
+But it's only working when via frontend redirect. One possibility would be to hide the legacy login option and use `kc_idp_hint` as URL parameter:
+
+![](docs/images/scenario1_legacy_server_config.png)
+
+But this would lead to having each frontend app know which is a legacy user.
 
 ### Testing Keycloak e-mails
 The local Keycloak server includes MailDev, a mock SMTP server that you can use to receive and view Keycloak e-mails. It is available on <http://localhost:9999>.
