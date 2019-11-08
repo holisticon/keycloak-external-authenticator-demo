@@ -119,7 +119,6 @@ class UserRepository {
 
 The benefit is that the user never sees any UI from the backend system.
 
-** TODO
 >NOTE: Within the demo setup you can play around with the code and update the JAR via `./mvnw package` and Keycloak will redeploy the SPI after a few seconds. No need to restart 
 
 
