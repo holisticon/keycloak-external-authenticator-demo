@@ -25,7 +25,6 @@ Keycloak is available at [localhost:8080](http://localhost:8080/). Another Keycl
 To create new setup sql dump:
 ```
 ./bin/dev-dump-sql-docker.sh 
-
 ```
 
 ### Users
@@ -35,8 +34,7 @@ To create new setup sql dump:
 * Apps Realm (regular Keycloak)
   * user / user
 * Legacy Realm (3rd Party Keycloak)
-  * legacy / legacy
-  * legacyFederation / legacyFederation
+  * legacy / legacy 
 
 ### Federation Scenarios
 
@@ -62,14 +60,67 @@ But this would lead to having each frontend app know which is a legacy user.
 
 #### Use Legacy System as User Federation Provider
 
-Another option 
+Another option without any frontend redirect would be a [customer federation provder](https://www.keycloak.org/docs/latest/server_development/index.html#provider-interfaces):
 
-The real implementation is done in `CustomStorageProvider.java`:
+![](docs/images/scenario2_federation_creation.png)
+
+It's also possible to add config options here:
+
+![](docs/images/scenario2_federation_config.png)
 
 
+The real implementation is done in `UserRepository.java`:
+```
+class UserRepository {
+
+    private List<User> users;
+
+    public UserRepository() {
+        users = Arrays.asList(
+                new User("42", "legacy", "legacy")
+        );
+    }
+
+    public List<User> getAllUsers() {
+        return users;
+    }
+
+    public int getUsersCount() {
+        return users.size();
+    }
+
+    public User findUserById(String id) {
+        return users.stream().filter(user -> user.getId().equals(id)).findFirst().get();
+    }
+
+    public User findUserByUsernameOrEmail(String username) {
+        return users.stream()
+                .filter(user -> user.getUsername().equalsIgnoreCase(username) || user.getEmail().equalsIgnoreCase(username))
+                .findFirst().get();
+    }
+
+    public List<User> findUsers(String query) {
+        return users.stream()
+                .filter(user -> user.getUsername().contains(query) || user.getEmail().contains(query))
+                .collect(Collectors.toList());
+    }
+
+    public boolean validateCredentials(String username, String password) {
+        return findUserByUsernameOrEmail(username).getPassword().equals(password);
+    }
+
+    public boolean updateCredentials(String username, String password) {
+        findUserByUsernameOrEmail(username).setPassword(password);
+        return true;
+    }
+
+}
+```
+
+The benefit is that the user never sees any UI from the backend system.
 
 ** TODO
->NOTE: Within the demo setup `./mvnw package` durign 
+>NOTE: Within the demo setup you can play around with the code and update the JAR via `./mvnw package` and Keycloak will redeploy the SPI after a few seconds. No need to restart 
 
 
 ### Testing Keycloak e-mails
