@@ -54,6 +54,7 @@ services:
       - 3rdparty
     volumes:
       - ./etc/docker/keycloak-theme/:/opt/jboss/keycloak/themes/holisticon/
+      - ./src/provider/target/:/opt/jboss/keycloak/standalone/deployments/
     environment:
       DB_VENDOR: MYSQL
       DB_ADDR: mysql

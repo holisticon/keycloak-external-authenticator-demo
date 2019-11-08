@@ -2,13 +2,23 @@
 Show sample implementation for using external auth provider in keycloak
 
 - [Keycloak external Authenticator Demo](#keycloak-external-authenticator-demo)
-  - [Using](#using)
+  - [Demo usage](#demo-usage)
     - [Users](#users)
-    - [Federation Szenarios:](#federation-szenarios)
-      - [Use Legacy System aus Authentication Provider](#use-legacy-system-aus-authentication-provider)
+    - [Federation Scenarios](#federation-scenarios)
+      - [Use Legacy System as Authentication Provider](#use-legacy-system-as-authentication-provider)
+      - [Use Legacy System as User Federation Provider](#use-legacy-system-as-user-federation-provider)
     - [Testing Keycloak e-mails](#testing-keycloak-e-mails)
+  - [Deployment to Keycloak](#deployment-to-keycloak)
 
-## Using
+## Demo usage
+
+Start setup of this demo:
+```
+./mvnw package
+docker-compose up -d
+...
+```
+
 
 Keycloak is available at [localhost:8080](http://localhost:8080/). Another Keycloak (acting as 3rd Party OAuth server) is available at [localhost:8180](http://localhost:8180/).
 
@@ -26,10 +36,11 @@ To create new setup sql dump:
   * user / user
 * Legacy Realm (3rd Party Keycloak)
   * legacy / legacy
+  * legacyFederation / legacyFederation
 
-### Federation Szenarios:
+### Federation Scenarios
 
-#### Use Legacy System aus Authentication Provider
+#### Use Legacy System as Authentication Provider
 
 To get the redirect working add a DNS alias, e.g. `/etc/hosts`:
 
@@ -47,6 +58,19 @@ But it's only working when via frontend redirect. One possibility would be to hi
 ![](docs/images/scenario1_legacy_server_config.png)
 
 But this would lead to having each frontend app know which is a legacy user.
+
+
+#### Use Legacy System as User Federation Provider
+
+Another option 
+
+The real implementation is done in `CustomStorageProvider.java`:
+
+
+
+** TODO
+>NOTE: Within the demo setup `./mvnw package` durign 
+
 
 ### Testing Keycloak e-mails
 The local Keycloak server includes MailDev, a mock SMTP server that you can use to receive and view Keycloak e-mails. It is available on <http://localhost:9999>.
@@ -86,3 +110,17 @@ The local Keycloak server should now be set up to send e-mails to MailDev. To ch
 6. Enter your username (**admin**) in the text field, and submit the form.
 
 7. Visit [MailDev](http://localhost:9999). You should see a reset password e-mail from Keycloak.
+
+
+## Deployment to Keycloak
+
+To use the custom provider in Keycloak just copy `src/provider/target/keycloak-custom-federation-0.1.0-SNAPSHOT.jar` to `/opt/jboss/keycloak/standalone/deployments/` or build a custom Docker Image:
+
+```
+FROM jboss/keycloak:7.0.1
+...
+ENV KEYCLOAK_DIRECTORY=/opt/jboss/keycloak/
+...
+COPY src/provider/target/*.jar ${KEYCLOAK_DIRECTORY}/standalone/deployments/
+...
+```
