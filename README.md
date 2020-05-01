@@ -14,7 +14,7 @@ Show sample implementation for using external auth provider in keycloak
 
 Start setup of this demo:
 ```
-./mvnw package
+(cd src/provider && ./mvnw package)
 docker-compose up -d
 ...
 ```
@@ -24,7 +24,7 @@ Keycloak is available at [localhost:8080](http://localhost:8080/). Another Keycl
 
 To create new setup sql dump:
 ```
-./bin/dev-dump-sql-docker.sh 
+./bin/dev-dump-sql-docker.sh
 ```
 
 ### Users
@@ -34,7 +34,7 @@ To create new setup sql dump:
 * Apps Realm (regular Keycloak)
   * user / user
 * Legacy Realm (3rd Party Keycloak)
-  * legacy / legacy 
+  * legacy / legacy
 
 ### Federation Scenarios
 
@@ -119,7 +119,7 @@ class UserRepository {
 
 The benefit is that the user never sees any UI from the backend system.
 
->NOTE: Within the demo setup you can play around with the code and update the JAR via `./mvnw package` and Keycloak will redeploy the SPI after a few seconds. No need to restart 
+>NOTE: Within the demo setup you can play around with the code and update the JAR via `./mvnw package` and Keycloak will redeploy the SPI after a few seconds. No need to restart
 
 
 ### Testing Keycloak e-mails
