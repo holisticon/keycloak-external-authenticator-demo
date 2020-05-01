@@ -43,7 +43,7 @@ services:
 
   keycloak:
     container_name: keycloak
-    image: jboss/keycloak:7.0.1
+    image: jboss/keycloak:10.0.0
     depends_on:
       - mysql
     ports:
