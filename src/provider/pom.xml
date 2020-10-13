@@ -11,7 +11,7 @@
         <jboss.logging.version>3.4.1.Final</jboss.logging.version>
         <jboss-transaction-api_1.3_spec>2.0.0.Final</jboss-transaction-api_1.3_spec>
         <!-- Test -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <artifactId>keycloak-custom-federation</artifactId>
